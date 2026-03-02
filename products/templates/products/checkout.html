@@ -1,0 +1,117 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5" style="background-color: #ffffff; color: #333333;">
+  <div class="container" style="max-width: 1100px;">
+
+    <!-- Page Title -->
+    <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-lg-10 text-center" data-aos="fade-up">
+        <h1 class="display-5 fw-bold mb-3" style="letter-spacing: 1px; color: #111111;">
+          Checkout
+        </h1>
+        <p class="lead fs-5 mb-0" style="color: #555555;">
+          Complete your order securely
+        </p>
+        <div class="mx-auto mt-3" style="width: 80px; height: 2px; background: #222222; opacity: 0.7;"></div>
+      </div>
+    </div>
+
+    <div class="row g-5">
+
+      <!-- Left Column: Delivery Address Form -->
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="card border-0 shadow-sm rounded-0 p-4 p-lg-5">
+          <h3 class="fs-3 fw-medium mb-4" style="color: #111111;">
+            Delivery Details
+          </h3>
+
+          <form method="POST">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-dark btn-lg w-100 rounded-0 py-3 mt-4">
+              Place Order • ₹{{ total|floatformat:2 }}
+            </button>
+
+            <p class="small text-muted text-center mt-3 mb-0">
+              Secure checkout • We never store your payment details
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right Column: Order Summary -->
+      <div class="col-lg-5" data-aos="fade-left">
+        <div class="card border-0 shadow-sm rounded-0 p-4 p-lg-5 sticky-top" style="top: 20px;">
+          <h3 class="fs-3 fw-medium mb-4" style="color: #111111;">
+            Order Summary
+          </h3>
+
+          <ul class="list-group list-group-flush mb-4">
+            {% for item in products %}
+              <li class="list-group-item px-0 d-flex justify-content-between align-items-center border-bottom py-3">
+                <div>
+                  <strong>{{ item.product.name }}</strong><br>
+                  <small class="text-muted">Qty: {{ item.qty }}</small>
+                </div>
+                <span class="fw-medium">₹{{ item.subtotal|floatformat:2 }}</span>
+              </li>
+            {% endfor %}
+
+            <!-- Total -->
+            <li class="list-group-item px-0 d-flex justify-content-between align-items-center fw-bold fs-5 border-0 mt-3 pt-3">
+              <span>Total Amount</span>
+              <span class="fs-4">₹{{ total|floatformat:2 }}</span>
+            </li>
+          </ul>
+
+          <!-- Small trust signals -->
+          <div class="small text-muted text-center">
+            <p class="mb-2">Cash on Delivery Available</p>
+            <p class="mb-0">Estimated Delivery: 3–7 working days</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .card {
+    border: 1px solid #e8e8e8 !important;
+  }
+  .form-control {
+    border-radius: 0;
+    border-color: #cccccc;
+  }
+  .form-control:focus {
+    border-color: #111111;
+    box-shadow: 0 0 0 0.2rem rgba(17,17,17,0.15);
+  }
+  .btn-dark {
+    background-color: #111111;
+    border-color: #111111;
+    transition: all 0.3s ease;
+  }
+  .btn-dark:hover {
+    background-color: #000000;
+    border-color: #000000;
+  }
+  .list-group-item {
+    border-left: none;
+    border-right: none;
+  }
+  @media (max-width: 991px) {
+    .sticky-top {
+      position: static !important;
+    }
+  }
+</style>
+
+{% endblock %}

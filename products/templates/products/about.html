@@ -1,0 +1,133 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5" style="background-color: #ffffff; color: #333333;">
+  <div class="container">
+
+    <!-- Hero Section -->
+    <div class="row justify-content-center mb-5 pb-4">
+      <div class="col-lg-10 text-center" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-4" style="letter-spacing: 3px; color: #111111;">
+          About Samprathi
+        </h1>
+        <p class="lead fs-4 mb-4" style="color: #555555;">
+          Where threads carry centuries of tradition, and every drape tells a story of quiet grace.
+        </p>
+        <div class="mx-auto" style="width: 120px; height: 2px; background: #222222; opacity: 0.8;"></div>
+      </div>
+    </div>
+
+    <!-- Story Introduction -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-9">
+        <div class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="fs-3 fw-semibold mb-4" style="color: #1a1a1a;">Our Saree Story Begins Here</h2>
+          <p class="fs-5 lh-lg" style="color: #444444;">
+            Samprathi was born from a deep reverence for India's handloom heritage — from the rhythmic click of the loom in quiet villages to the gentle rustle of silk draping generations of women. 
+            We believe a saree is not just fabric; it is memory, craftsmanship, patience, and identity woven into six yards of timeless elegance.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image + Caption Block 1: Weaving Process -->
+    <div class="row align-items-center mb-5 pb-4 g-5">
+      <div class="col-lg-6" data-aos="fade-right">
+        <img src="{% static 'images/saree1.jpg' %}" 
+             class="img-fluid rounded-0 shadow" 
+             alt="Handloom weaver at work" 
+             style="border: 1px solid #e0e0e0;">
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <h3 class="fs-2 fw-medium mb-3" style="color: #111111;">The Soul of the Loom</h3>
+        <p class="fs-5 lh-lg" style="color: #444444;">
+          Every Samprathi saree begins in the hands of master weavers — artisans who have inherited techniques passed down through generations. 
+          The slow, deliberate rhythm of the handloom creates not just cloth, but heirlooms that carry stories of devotion and skill.
+        </p>
+        <p class="small text-muted mt-4" style="color: #666666;">“In the silence between each thread lies centuries of tradition.”</p>
+      </div>
+    </div>
+
+    <!-- Image + Caption Block 2: Woman in Saree -->
+    <div class="row align-items-center mb-5 pb-4 g-5 flex-lg-row-reverse">
+      <div class="col-lg-6" data-aos="fade-left">
+        <img src="{% static 'images/saree2.jpg' %}" 
+             class="img-fluid rounded-0 shadow" 
+             alt="Woman draped in traditional saree" 
+             style="border: 1px solid #e0e0e0;">
+      </div>
+      <div class="col-lg-6" data-aos="fade-right">
+        <h3 class="fs-2 fw-medium mb-3" style="color: #111111;">Grace That Endures</h3>
+        <p class="fs-5 lh-lg" style="color: #444444;">
+          A saree from Samprathi is more than attire — it is an expression of poise, strength, and cultural continuity. 
+          Whether worn for a quiet morning puja or a grand celebration, it drapes the wearer in quiet confidence and timeless beauty.
+        </p>
+        <p class="small text-muted mt-4" style="color: #666666;">“Some fabrics age; ours remember.”</p>
+      </div>
+    </div>
+
+    <!-- Image + Caption Block 3: Close-up Motifs -->
+    <div class="row align-items-center mb-5 pb-4 g-5">
+      <div class="col-lg-6" data-aos="fade-right">
+        <img src="{% static 'images/saree3.jpg' %}" 
+             class="img-fluid rounded-0 shadow" 
+             alt="Intricate saree motifs" 
+             style="border: 1px solid #e0e0e0;">
+      </div>
+      <div class="col-lg-6" data-aos="fade-left">
+        <h3 class="fs-2 fw-medium mb-3" style="color: #111111;">Motifs That Speak</h3>
+        <p class="fs-5 lh-lg" style="color: #444444;">
+          From the delicate paisleys of Banarasi to the geometric precision of temple borders — each motif is a language of symbolism, prosperity, and protection. 
+          We preserve these ancient patterns with reverence, ensuring they continue to whisper their stories.
+        </p>
+        <p class="small text-muted mt-4" style="color: #666666;">“Every border holds a prayer, every pallu a legacy.”</p>
+      </div>
+    </div>
+
+    <!-- Final Heritage Note -->
+    <div class="row justify-content-center mt-5 pt-5">
+      <div class="col-lg-8 text-center" data-aos="fade-up">
+        <h2 class="fs-3 fw-semibold mb-4" style="color: #111111;">Our Promise</h2>
+        <p class="fs-5 lh-lg mb-4" style="color: #444444;">
+          At Samprathi, we are custodians, not creators. We source directly from weaving communities, honour fair practices, and celebrate the human touch that no machine can replicate. 
+          When you choose a Samprathi saree, you become part of this living tradition.
+        </p>
+        <a href="{% url 'shop' %}" class="btn btn-dark btn-lg rounded-0 px-5 py-3 mt-3">
+          Discover the Collection
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  section {
+    font-family: 'Jost', sans-serif;
+  }
+  h1, h2, h3 {
+    font-family: 'Marcellus', serif;
+  }
+  .shadow {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
+  }
+  img {
+    transition: transform 0.4s ease;
+  }
+  img:hover {
+    transform: scale(1.03);
+  }
+  .btn-dark {
+    background-color: #111111;
+    border-color: #111111;
+    transition: all 0.3s;
+  }
+  .btn-dark:hover {
+    background-color: #000000;
+    border-color: #000000;
+  }
+</style>
+
+{% endblock %}

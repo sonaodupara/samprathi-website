@@ -1,0 +1,76 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5" style="background-color: #ffffff; color: #333333;">
+  <div class="container">
+
+    <!-- Hero / Header -->
+    <div class="row justify-content-center mb-5 pb-4">
+      <div class="col-lg-10 text-center" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-4" style="letter-spacing: 2px; color: #111111;">
+          Order Placed Successfully!
+        </h1>
+        <p class="lead fs-4 mb-3" style="color: #555555;">
+          Thank you for shopping with Samprathi.
+        </p>
+        <div class="mx-auto" style="width: 100px; height: 2px; background: #222222; opacity: 0.8;"></div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="100">
+
+        <p class="fs-5 lh-lg mb-5" style="color: #444444;">
+          Your order has been received and is being prepared with care.<br>
+          You will receive a confirmation email/SMS shortly.
+        </p>
+
+        <p class="fs-5 mb-5" style="color: #444444;">
+          Track your order status or view details anytime in your account.
+        </p>
+
+        <!-- Buttons -->
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-4">
+          <a href="{% url 'shop' %}" class="btn btn-dark btn-lg rounded-0 px-5 py-3">
+            Continue Shopping
+          </a>
+          <a href="{% url 'my_orders' %}" class="btn btn-outline-dark btn-lg rounded-0 px-5 py-3">
+            View My Orders
+          </a>
+        </div>
+
+        <!-- Final Note -->
+        <p class="mt-5 fs-5" style="color: #555555;">
+          Your love for handwoven tradition means the world to us.<br>
+          Happy draping!
+        </p>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .btn-dark {
+    background-color: #111111;
+    border-color: #111111;
+    transition: all 0.3s;
+  }
+  .btn-dark:hover {
+    background-color: #000000;
+    border-color: #000000;
+  }
+  .btn-outline-dark {
+    border-width: 1.5px;
+    transition: all 0.3s;
+  }
+  .btn-outline-dark:hover {
+    background-color: #111111;
+    color: white;
+  }
+</style>
+
+{% endblock %}

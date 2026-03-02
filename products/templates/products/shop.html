@@ -1,0 +1,50 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h2 class="text-center mb-5">OUR COLLECTIONS</h2>
+
+    <div class="row">
+
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+
+            <div class="card h-100 shadow-sm">
+
+                {% if product.image %}
+                    <img src="{{ product.image.url }}"
+                         class="card-img-top"
+                         style="height:350px; object-fit:cover;">
+                {% endif %}
+
+                <div class="card-body text-center">
+
+                    <h5>{{ product.name }}</h5>
+
+                    <p class="text-muted">
+                        ₹{{ product.price }}
+                    </p>
+
+                    <a href="{% url 'add_to_cart' product.id %}" class="btn btn-dark mt-2">
+                        Add to Cart
+                    </a>
+
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-dark mt-2">
+                        View Product
+                    </a>
+                      
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

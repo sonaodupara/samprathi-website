@@ -1,0 +1,168 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5" style="background-color: #ffffff; color: #333333;">
+  <div class="container" style="max-width: 900px;">
+
+    <!-- Header -->
+    <div class="row justify-content-center mb-5 pb-4">
+      <div class="col-lg-10 text-center" data-aos="fade-up">
+        <h1 class="display-5 fw-bold mb-3" style="letter-spacing: 1px; color: #111111;">
+          Track Your Order
+        </h1>
+        <p class="lead fs-5 mb-0" style="color: #555555;">
+          Enter your Order ID to see real-time status
+        </p>
+        <div class="mx-auto mt-3" style="width: 80px; height: 2px; background: #222222; opacity: 0.7;"></div>
+      </div>
+    </div>
+
+    <!-- Search Form -->
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 col-md-10">
+        <form method="POST" class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+          {% csrf_token %}
+          <input type="number" name="order_id"
+                 placeholder="Enter Order ID (e.g. 12345)"
+                 class="form-control form-control-lg rounded-0 shadow-sm"
+                 required style="max-width: 350px;">
+          <button type="submit" class="btn btn-dark btn-lg rounded-0 px-5">
+            Track Order
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {% if order %}
+
+      <!-- Order Info Card -->
+      <div class="card border-0 shadow-sm rounded-0 overflow-hidden mb-5" data-aos="fade-up">
+        <div class="card-body p-4 p-md-5">
+
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0" style="color: #111111;">
+              Order #{{ order.id }}
+            </h4>
+            <span class="badge bg-secondary fs-6 px-3 py-2">
+              {{ order.status }}
+            </span>
+          </div>
+
+          <!-- Beautiful Progress Bar -->
+          <div class="tracking-progress mb-5">
+            <ul class="list-unstyled d-flex justify-content-between position-relative">
+              <!-- Connecting Line -->
+              <div class="progress-line position-absolute top-50 start-0 w-100" style="height: 4px; background: #e0e0e0; z-index: 1;"></div>
+
+              <!-- Step 1: Placed -->
+              <li class="text-center position-relative" style="z-index: 2; flex: 1;">
+                <div class="step-circle mx-auto mb-3 d-flex align-items-center justify-content-center
+                  {% if order.status != 'Pending' %}step-completed{% endif %}">
+                  <span>1</span>
+                </div>
+                <p class="small fw-medium mb-0">Order Placed</p>
+                <p class="tiny text-muted mb-0">{{ order.created_at|date:"d M Y" }}</p>
+              </li>
+
+              <!-- Step 2: Processing -->
+              <li class="text-center position-relative" style="z-index: 2; flex: 1;">
+                <div class="step-circle mx-auto mb-3 d-flex align-items-center justify-content-center
+                  {% if order.status == 'Processing' or order.status == 'Shipped' or order.status == 'Delivered' %}step-completed{% endif %}">
+                  <span>2</span>
+                </div>
+                <p class="small fw-medium mb-0">Processing</p>
+              </li>
+
+              <!-- Step 3: Shipped -->
+              <li class="text-center position-relative" style="z-index: 2; flex: 1;">
+                <div class="step-circle mx-auto mb-3 d-flex align-items-center justify-content-center
+                  {% if order.status == 'Shipped' or order.status == 'Delivered' %}step-completed{% endif %}">
+                  <span>3</span>
+                </div>
+                <p class="small fw-medium mb-0">Shipped</p>
+              </li>
+
+              <!-- Step 4: Delivered -->
+              <li class="text-center position-relative" style="z-index: 2; flex: 1;">
+                <div class="step-circle mx-auto mb-3 d-flex align-items-center justify-content-center
+                  {% if order.status == 'Delivered' %}step-completed{% endif %}">
+                  <span>4</span>
+                </div>
+                <p class="small fw-medium mb-0">Delivered</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Order Details -->
+          <div class="border-top pt-4">
+            <p class="mb-2"><strong>Total Amount:</strong> ₹{{ order.total_price|floatformat:2 }}</p>
+            <p class="mb-2"><strong>Placed On:</strong> {{ order.created_at|date:"d M Y, H:i" }}</p>
+            {% if order.status == 'Delivered' %}
+              <p class="text-success fw-medium">Your order has reached you — happy draping! 🌸</p>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Continue Shopping -->
+      <div class="text-center">
+        <a href="{% url 'shop' %}" class="btn btn-dark btn-lg rounded-0 px-5 py-3">
+          Continue Shopping
+        </a>
+      </div>
+
+    {% elif request.method == "POST" %}
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center" data-aos="fade-up">
+          <div class="alert alert-danger border-0 rounded-0 shadow-sm p-4">
+            <h5 class="mb-3">Order Not Found</h5>
+            <p class="mb-0">Please check the Order ID and try again.</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  /* Progress Bar Styling */
+  .tracking-progress {
+    position: relative;
+  }
+  .step-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3rem;
+    transition: all 0.4s ease;
+  }
+  .step-completed {
+    background: #28a745 !important;
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.2);
+  }
+  .progress-line {
+    background: #e0e0e0 !important;
+    transition: width 1s ease;
+  }
+  .step-completed ~ .step-circle {
+    background: #28a745;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .step-circle {
+      width: 40px;
+      height: 40px;
+      font-size: 1.1rem;
+    }
+  }
+</style>
+
+{% endblock %}

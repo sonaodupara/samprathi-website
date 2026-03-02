@@ -1,0 +1,156 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5" style="background-color: #ffffff; color: #333333;">
+  <div class="container">
+
+    <!-- Hero / Header -->
+    <div class="row justify-content-center mb-5 pb-4">
+      <div class="col-lg-10 text-center" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-4" style="letter-spacing: 2px; color: #111111;">
+          Contact Us
+        </h1>
+        <p class="lead fs-4 mb-3" style="color: #555555;">
+          Reach out for custom orders, enquiries, or just to say hello.
+        </p>
+        <div class="mx-auto" style="width: 100px; height: 2px; background: #222222; opacity: 0.8;"></div>
+      </div>
+    </div>
+
+    <div class="row g-5">
+
+      <!-- Left: Contact Info -->
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="contact-info mb-5">
+          <h3 class="fs-3 fw-medium mb-4" style="color: #111111;">Get in Touch</h3>
+
+          <ul class="list-unstyled fs-5 lh-lg" style="color: #444444;">
+            <li class="mb-4">
+              <strong>Email:</strong><br>
+              <a href="mailto:Samprathisarees@gmail.com" class="text-decoration-none" style="color: #222222;">
+                Samprathisarees@gmail.com
+              </a>
+            </li>
+
+            <li class="mb-4">
+              <strong>Phone / WhatsApp:</strong><br>
+              <a href="https://wa.me/9188918641" target="_blank" class="text-decoration-none" style="color: #222222;">
+                +91 9188918641
+              </a>
+              <small class="d-block text-muted mt-1">(Preferred for quick replies & orders)</small>
+            </li>
+
+            <li class="mb-4">
+              <strong>Address / Studio:</strong><br>
+              Samprathi Sarees<br>
+              12/194, Kavungal Bypass Road,<br>
+              Malappuram, Kerala - 676505<br>
+              <small class="text-muted">(Pickup available – please call ahead)</small>
+            </li>
+
+            <li class="mb-4">
+              <strong>Business Hours:</strong><br>
+              Monday – Saturday: 10:00 AM – 7:00 PM<br>
+              Sunday: Closed
+            </li>
+          </ul>
+
+          <div class="social mt-5">
+            <h5 class="fw-medium mb-3" style="color: #111111;">Follow Us</h5>
+            <a href="https://www.instagram.com/samprathi_sarees?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+               target="_blank" 
+               class="btn btn-outline-dark rounded-0 px-4 py-2 me-2">
+              <svg width="20" height="20" class="me-2" fill="currentColor">
+                <use xlink:href="#instagram"></use>
+              </svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="contact-form bg-light p-4 p-lg-5 rounded-0 shadow-sm" style="border: 1px solid #e0e0e0;">
+          <h3 class="fs-3 fw-medium mb-4" style="color: #111111;">Send us a Message</h3>
+
+ {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success">
+        {{ message }}
+    </div>
+  {% endfor %}
+ {% endif %}
+          <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+
+            <div class="mb-4">
+              <label for="name" class="form-label fw-medium">Your Name</label>
+              <input type="text" class="form-control rounded-0" id="name" name="name" required>
+            </div>
+
+            <div class="mb-4">
+              <label for="email" class="form-label fw-medium">Email Address</label>
+              <input type="email" class="form-control rounded-0" id="email" name="email" required>
+            </div>
+
+            <div class="mb-4">
+              <label for="phone" class="form-label fw-medium">Phone / WhatsApp Number</label>
+              <input type="tel" class="form-control rounded-0" id="phone" name="phone">
+            </div>
+
+            <div class="mb-4">
+              <label for="message" class="form-label fw-medium">Your Message</label>
+              <textarea class="form-control rounded-0" id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-dark btn-lg rounded-0 w-100">
+              Send Message
+            </button>
+          </form>
+
+          <p class="small text-muted mt-4 text-center">
+            We usually reply within 24 hours during business days.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Final Note -->
+    <div class="row justify-content-center mt-5 pt-4">
+      <div class="col-lg-8 text-center" data-aos="fade-up">
+        <p class="fs-5" style="color: #555555;">
+          Thank you for choosing Samprathi.<br>
+          Your love for handwoven tradition means the world to us.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .contact-info li strong {
+    color: #111111;
+  }
+  .btn-outline-dark {
+    border-width: 1.5px;
+    transition: all 0.3s;
+  }
+  .btn-outline-dark:hover {
+    background-color: #111111;
+    color: white;
+  }
+  .form-control:focus {
+    border-color: #111111;
+    box-shadow: 0 0 0 0.2rem rgba(17,17,17,0.15);
+  }
+  .shadow-sm {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06) !important;
+  }
+</style>
+
+{% endblock %}

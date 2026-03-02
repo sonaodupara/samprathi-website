@@ -1,0 +1,115 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="py-5" style="background-color: #ffffff; color: #333333;">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="row justify-content-center mb-5 pb-4">
+      <div class="col-lg-10 text-center" data-aos="fade-up">
+        <h1 class="display-5 fw-bold mb-4" style="letter-spacing: 2px; color: #111111;">
+          My Orders
+        </h1>
+        <p class="lead fs-4 mb-3" style="color: #555555;">
+          View all your recent orders and their status.
+        </p>
+        <div class="mx-auto" style="width: 100px; height: 2px; background: #222222; opacity: 0.8;"></div>
+      </div>
+    </div>
+
+    {% if orders %}
+      <!-- Orders List -->
+      <div class="row justify-content-center">
+        <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle" style="border: 1px solid #e0e0e0;">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Order ID</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Status</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in orders %}
+                  <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.created_at|date:"d M Y, H:i" }}</td>
+                    <td>₹{{ order.total_price|floatformat:2 }}</td>
+                    <td>
+                      <span class="badge rounded-pill px-3 py-2
+                        {% if order.status == 'Delivered' %}bg-success
+                        {% elif order.status == 'Shipped' %}bg-info
+                        {% elif order.status == 'Processing' %}bg-warning
+                        {% elif order.status == 'Cancelled' %}bg-danger
+                        {% else %}bg-secondary{% endif %}">
+                        {{ order.status }}
+                      </span>
+                    </td>
+                    <td>
+                      <a href="#" class="btn btn-sm btn-outline-dark rounded-0">
+                        View Details
+                      </a>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="5" class="text-center py-5 text-muted fs-5">
+                      No orders found.
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Back / Continue Shopping -->
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-8 text-center">
+          <a href="{% url 'shop' %}" class="btn btn-dark btn-lg rounded-0 px-5 py-3">
+            Continue Shopping
+          </a>
+        </div>
+      </div>
+
+    {% else %}
+      <!-- No Orders -->
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center" data-aos="fade-up">
+          <p class="fs-4 mb-4" style="color: #555555;">
+            You haven't placed any orders yet.
+          </p>
+          <a href="{% url 'shop' %}" class="btn btn-dark btn-lg rounded-0 px-5 py-3">
+            Start Shopping
+          </a>
+        </div>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<style>
+  .table th, .table td {
+    vertical-align: middle;
+    border-color: #e0e0e0;
+  }
+  .btn-outline-dark {
+    border-width: 1.5px;
+    transition: all 0.3s;
+  }
+  .btn-outline-dark:hover {
+    background-color: #111111;
+    color: white;
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "products/base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO / BILLBOARD -->
+<section id="billboard" class="bg-light py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h1 class="section-title text-center mt-4" data-aos="fade-up">
+        New Collections
+      </h1>
+
+      <div class="col-md-6 text-center" data-aos="fade-up" data-aos-delay="300">
+        <p>
+          Discover elegant handcrafted sarees from Samprathi — tradition blended with modern style.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="swiper main-swiper py-4" data-aos="fade-up" data-aos-delay="600">
+        <div class="swiper-wrapper d-flex border-animation-left">
+
+          <div class="swiper-slide">
+            <div class="banner-item image-zoom-effect">
+              <div class="image-holder">
+                <img src="{% static 'images/saree1.jpg' %}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="banner-item image-zoom-effect">
+              <div class="image-holder">
+                <img src="{% static 'images/saree2.jpg' %}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+          <div class="swiper-slide">
+            <div class="banner-item image-zoom-effect">
+              <div class="image-holder">
+                <img src="{% static 'images/saree3.jpg' %}" class="img-fluid">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- FEATURED COLLECTION -->
+<section class="featured py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2>Featured Sarees</h2>
+      <p>Handpicked premium designs from Samprathi</p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-4">
+        <img src="{% static 'images/saree4.jpg' %}" class="img-fluid">
+        <h5 class="mt-3 text-center">Silk Saree</h5>
+      </div>
+
+      <div class="col-md-4">
+        <img src="{% static 'images/saree5.jpg' %}" class="img-fluid">
+        <h5 class="mt-3 text-center">Cotton Saree</h5>
+      </div>
+
+      <div class="col-md-4">
+        <img src="{% static 'images/saree6.jpg' %}" class="img-fluid">
+        <h5 class="mt-3 text-center">Designer Saree</h5>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ABOUT BRAND -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2>About Samprathi</h2>
+    <p class="mt-3">
+      Samprathi celebrates timeless elegance through curated saree collections.
+      Every piece reflects craftsmanship, culture, and modern sophistication.
+    </p>
+  </div>
+</section>
+
+
+<!-- NEWSLETTER -->
+<section class="newsletter bg-light"
+  style="background: url('{% static 'images/pattern-bg.png' %}') no-repeat;">
+  <div class="container text-center py-5">
+    <h3>Join Our Newsletter</h3>
+    <p>Get updates on new arrivals and exclusive offers.</p>
+
+    <input type="email" placeholder="Enter your email" class="form-control w-50 mx-auto">
+  </div>
+</section>
+
+{% endblock %}
