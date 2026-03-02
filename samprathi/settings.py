@@ -131,9 +131,9 @@ STATIC_URL = '/static/'
 import cloudinary
 
 cloudinary.config(
-    cloud_name="YOUR_CLOUD_NAME",
-    api_key="YOUR_API_KEY",
-    api_secret="YOUR_API_SECRET",
+    cloud_name="dfhvshctq",
+    api_key="523926336574457",
+    api_secret="FoSidPQP0L53iYm7aW0WipTrolY",
 )
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -143,8 +143,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
